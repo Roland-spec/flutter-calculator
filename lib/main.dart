@@ -83,7 +83,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
               alignment: Alignment.bottomRight,
               child: Text(
                 _expression.isEmpty ? 'Enter an expression' : _expression,
-                style: TextStyle(fontSize: 24),
+                style: TextStyle(fontSize: 30),
               ),
             ),
           ),
@@ -134,6 +134,9 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
               _buildButton('C'),
             ],
           ),
+          Row(children: 
+          [_buildButton('**')],
+          ),
         ],
       ),
     );
@@ -153,7 +156,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
         },
         child: Text(
           text,
-          style: TextStyle(fontSize: 24),
+          style: TextStyle(fontSize: 30),
         ),
       ),
     );
