@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:math_expressions/math_expressions.dart';
+import 'dart:math';
 
 void main() {
   runApp(CalculatorApp());
@@ -47,8 +48,22 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
     }
   }
 
+  void _calculateExponent() {
+    try {
+      setState(() {
+        final base = double.parse(_expression);
+        final exponent = double.parse(_result);
+        final result = pow(base, exponent);
+        _result = result.toString();
+      });
+    } catch (e) {
+      setState(() {
+        _result = 'Error';
+      });
+    }
+  }
+
   String _evaluateExpression(String expression) {
-    
     try {
       // Use the math_expressions library to parse and evaluate the expression
       final parser = Parser();
@@ -134,8 +149,8 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
               _buildButton('C'),
             ],
           ),
-          Row(children: 
-          [_buildButton('**')],
+          Row(
+            children: [_buildButton('**')],
           ),
         ],
       ),
@@ -150,6 +165,8 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
             _calculateResult();
           } else if (text == 'C') {
             _clearExpression();
+          } else if (text == '**') {
+            _calculateExponent();
           } else {
             _addToExpression(text);
           }
